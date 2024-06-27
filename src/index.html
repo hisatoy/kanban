@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Kanban board</title>
+    <link rel="stylesheet" href="./style.css">
+    <!--Scriptタグの設定-->
+    <script type="module" src="./kanban.js"></script>
+</head>
+
+<body>
+    <form id="task-form">
+        <h1>Kanban board</h1>
+        <div class="form-group">
+            <label for="title">タイトル</label>
+            <input id="form-title" type="text" required autofocus pattern=".*\S+.*" />
+        </div>
+        <div class="form-group">
+            <label for="description">内容</label>
+            <textarea id="form-description" rows="3"></textarea>
+        </div>
+        <button type="submit">新規追加</button>
+        <button id="create-json-button" type="button">JSONファイル作成</button>
+    </form>
+
+    <template id="task-list-template">
+        <div class="tasks">
+            <h2 class="list-title"></h2>
+            <ul id="list">
+                <!--ここにアイテムのli要素を入力していく-->
+            </ul>
+        </div>
+    </template>
+
+    <template id="task-item-template">
+        <li>
+            <div>
+                <h2 class="list-title"></h2>
+                <p class="task-description"></p>
+            </div>
+            <div>
+                <button class="edit-button">編集</button>
+                <button class="move-button">移動</button>
+            </div>
+        </li>
+    </template>
+
+    <div id="container" class="box"></div>
+</body>
+</html>
