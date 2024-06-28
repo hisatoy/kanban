@@ -24,7 +24,6 @@ class TaskForm{
 
         //Taskオブジェクトの生成
         const task = this.makeNewTask();
-        console.log(task);
 
         //TaskItemクラスのインスタンス化
         const item = new TaskItem("#task-item-template",task);
@@ -150,6 +149,7 @@ class TaskItem{
     mount(selector: string){
         const targetEl = document.querySelector(selector)!;
         targetEl.insertAdjacentElement("beforeend", this.element);
+        console.log(this.element)
     }
 
     setup(){

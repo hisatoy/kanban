@@ -15,7 +15,6 @@ class TaskForm {
         event.preventDefault(); //ブラウザのデフォルトの動作をキャンセル
         //Taskオブジェクトの生成
         const task = this.makeNewTask();
-        console.log(task);
         //TaskItemクラスのインスタンス化
         const item = new TaskItem("#task-item-template", task);
         item.mount("#todo"); //todoをidに持つul要素にマウント
@@ -30,12 +29,14 @@ class TaskForm {
     }
     createJsonHandler(event) {
         event.preventDefault();
+        const listItems = document.querySelectorAll('li');
+        const items = Array.from(listItems).map(item => item.innerHTML);
         fetch('/create-json', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ message: "Hello" }),
+            body: JSON.stringify({ items }),
         }).then(response => {
             if (response.ok) {
                 console.log('JSON file created successfully');
@@ -104,6 +105,7 @@ class TaskItem {
     mount(selector) {
         const targetEl = document.querySelector(selector);
         targetEl.insertAdjacentElement("beforeend", this.element);
+        console.log(this.element);
     }
     setup() {
         //挿入した要素の子要素のリストにidを設定
